@@ -1,11 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEMPLATE INGRESO DE PRODUCTO.HTML</h1>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/Producto/IngresoProducto.css' %}">
+
+<div class="IngresoProducto">
+    <h5 class="title mb-0 p-2">Ingreso de Producto</h5>
+    <div class="px-3 py-3">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3 ml-0 mr-0">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show"
+                    role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <section class="col-8">
+                    <!-- Imagen -->
+                    <div class="mb-3">
+                        <label for="id_imagen" class="form-label">Imagen:</label>
+                        <input class="form-control" type="file" id="id_imagen" name="imagen">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_nombre_producto" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="id_nombre_producto" name="nombre_producto"
+                            placeholder="Nombre del producto" required>
+                    </div>
+                </section>
+
+                <!-- Botón submit -->
+                <section class="col-4 d-flex justify-content-center align-items-center">
+                    <button class="btn-addproduct" type="submit">
+                        <i class="bi bi-plus-square"></i>
+                        <p class="mb-0">Agregar</p>
+                    </button>
+                </section>
+
+                <section class="col-lg-6 col-md-6 col-sm-12">
+                    <label class="form-label">Sede:</label>
+                    <div class="mb-3">
+                        {% for radio in data.Form_Producto_Sede.sede %}
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="sede" value="{{ radio.data.value }}"
+                                id="{{ radio.id_for_label }}" {% if radio.data.selected %}checked{% endif %} required>
+                            <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                {{ radio.choice_label }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Cantidad -->
+                    <div class="mb-3">
+                        <label for="id_stock_sede" class="form-label">Cantidad:</label>
+                        <input type="number" id="id_stock_sede" name="stock_sede" min="0"
+                            class="form-control d-inline-block w-100" placeholder="Cantidad" required>
+                    </div>
+                </section>
+
+                <section class="col-lg-6 col-md-6 col-sm-12">
+                    <!-- Proveedor con datalist -->
+                    <div class="mb-4">
+                        <label for="id_proveedor_nombre" class="form-label">Proveedor:</label>
+                        <input class="form-control" list="datalistOptionsProveedor" id="id_proveedor_nombre"
+                            name="proveedor_nombre" placeholder="ejem: Juan" required>
+                        <datalist id="datalistOptionsProveedor">
+                            {% for prov in data.proveedores %}
+                            <option value="{{ prov.nombre }}">
+                            {% endfor %}
+                        </datalist>
+                    </div>
+
+                    <!-- Tipo de producto con datalist -->
+                    <div class="mb-3">
+                        <label for="id_tipo_producto_nombre" class="form-label">Tipo de Producto:</label>
+                        <input class="form-control" list="datalistOptionsTipos" id="id_tipo_producto_nombre"
+                            name="tipo_producto_nombre" placeholder="ejm: Tinte" required>
+                        <datalist id="datalistOptionsTipos">
+                            {% for tipo in data.tipos_producto %}
+                            <option value="{{ tipo.nombre }}">
+                                {% endfor %}
+                        </datalist>
+                    </div>
+                </section>
+
+            </div>
+        </form>
+    </div>
+
+    <h5 class="mb-0 px-2">Lista de productos</h5>
+    <div class="container py-3">
+
+        <div class="tableproduct">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 50px;">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Sede</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Añadir</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for product in data_quantity %}
+                    <tr>
+                        <th scope="row">{{product.producto.id}}</th>
+                        <td>{{product.producto.nombre}}</td>
+                        <td>{{product.sede.nombre}}</td>
+                        <td>{{product.producto.proveedor.nombre}}</td>
+                        <td>{{product.producto.tipo_producto.nombre}}</td>
+                        <td><i class="bi bi-file-plus"></i></td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

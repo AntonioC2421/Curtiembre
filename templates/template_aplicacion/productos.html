@@ -1,11 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEMPLATE PRODUCTOS.HTML</h1>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/filtros.css' %}">
+<link rel="stylesheet" href="{% static 'style/Producto/producto.css' %}">
+
+<div class="container-fluid filtros ">
+    <h6 class="mb-0">Filtros <i class="bi bi-funnel"></i>:</h6>
+    <section class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tipo de producto
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Clientes</a></li>
+            <li><a class="dropdown-item" href="#">Proveedores</a></li>
+            <li><a class="dropdown-item" href="#">Manuales</a></li>
+        </ul>
+    </section>
+</div>
+
+<form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Nombre de Producto" aria-label="Search" />
+    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+</form>
+
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 p-2">
+
+    {% for data in data_all %}
+    <div class="col">
+        <div class="card card-producto h-100">
+
+            {% if data.producto.imagen %}
+            <img src="{{ data.producto.imagen.url }}" class="card-img-top" alt="PhotoProduct">
+            {% else %}
+            <img src="{% static 'img/no_photo.jpg' %}" class="card-img-top" alt="PhotoProduct">
+            {% endif %}
+
+            <div class="card-body d-flex flex-column">
+                
+                <dl class="mb-3">
+                    <dt>Nombre Producto:</dt>
+                    <dd>{{ data.producto.nombre }}</dd>
+                    <dt>Sede:</dt>
+                    <dd>{{ data.sede.nombre }}</dd>
+                    <dt>Stock disponible:</dt>
+                    <dd>{{ data.stock_sede }} unid</dd>
+                    <dt>Tipo Producto:</dt>
+                    <dd>{{ data.producto.tipo_producto.nombre }}</dd>
+                </dl>
+
+                <div class="d-flex justify-content-end mt-auto">
+                    
+                    <input type="number" 
+                           id="inputRetirar_{{ data.id }}" 
+                           name="cantidad" 
+                           min="1" 
+                           max="{{ data.stock_sede }}" 
+                           class="form-control d-inline-block w-100 mx-1"
+                           placeholder="cant.">
+                           
+                    <button type="button" id="btn-retirar-{{ data.id }}" class="btn btn-danger">
+                        Retirar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+<script src="{% static 'Producto/producto.js' %}"></script>
+{% endblock %}

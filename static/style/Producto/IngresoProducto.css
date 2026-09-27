@@ -1,0 +1,45 @@
+.IngresoProducto {
+    border: var(--StyleBorde);
+    background-color: rgba(214, 214, 214, 0.897);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.IngresoProducto .title {
+    border-bottom: 2px solid black;
+}
+
+.btn-addproduct {
+    display: grid;
+    place-items: center;
+    padding: 1rem 0.5rem;
+    border: var(--StyleBorde);
+    background-color: #146c43;
+    text-decoration: none;
+    color: black;
+    font-family: monospace;
+}
+
+.btn-addproduct:hover {
+    background-color: rgb(43, 134, 134);
+    color: #ffffff;
+}
+
+.tableproduct {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 200px;
+    padding: 0;
+}
+
+.tableproduct table thead th {
+    position: sticky;
+    white-space: nowrap;
+    top: 0;
+    background-color: #cecece;
+    z-index: 10;
+    border-top: none;
+}

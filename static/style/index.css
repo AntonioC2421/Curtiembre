@@ -1,0 +1,33 @@
+:root{
+    --StyleBorde: 2px solid black;
+}
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+.BodyIndex {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+    background-color: #fdfdfd;
+    background-image: radial-gradient(#363636 10%, transparent 15%);
+    background-size: 5px 5px;
+    
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bs-tertiary-bg);
+        z-index: 1000;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box; /* Previene el desborde por padding */
+    }
+}

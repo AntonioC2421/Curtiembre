@@ -1,0 +1,19 @@
+.filtros{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 0.5rem;
+    border-bottom: var(--StyleBorde);
+    padding: 0.5rem ;
+    background-color:rgba(237, 237, 238, 0.849);
+}
+
+.filtros .dropdown{
+    border: var(--StyleBorde);
+    padding: 0.2rem 0.5rem;
+}
+
+.dropdown:hover{
+    background-color:rgba(184, 184, 184, 0.89);
+    color:black;
+}

@@ -3,26 +3,32 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 class Proveedor(models.Model):
-    name = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     telefono = models.CharField(max_length=15, blank=True, null=True)
 
 class Cliente(models.Model):
-    name = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     telefono = models.CharField(max_length=15, blank=True, null=True)
 
 class Sede(models.Model):
-    name = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
     direccion = models.CharField(max_length=50)
+    def __str__(self):
+        return self.nombre
 
 class TipoCuero(models.Model):
-    name = models.CharField(max_length=25)
+    nombre = models.CharField(max_length=25)
+
+class TipoProducto(models.Model):
+    nombre = models.CharField(max_length=25)
 
 class Producto(models.Model):
-    imagen = models.ImageField(upload_to='img_producto', blank=True)
-    name = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to='static/img/img_producto', blank=True, null=True)
+    nombre = models.CharField(max_length=50)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.PROTECT)
+    tipo_producto= models.ForeignKey(TipoProducto, on_delete=models.PROTECT)
 
 class ProductoSede(models.Model):
     stock_sede = models.PositiveIntegerField(default=0)
