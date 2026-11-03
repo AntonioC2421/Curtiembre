@@ -1,29 +1,67 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block content %}
+{% block main %}
 <link rel="stylesheet" href="{% static 'style/filtros.css' %}">
 <link rel="stylesheet" href="{% static 'style/Producto/producto.css' %}">
 
-<div class="container-fluid filtros ">
-    <h6 class="mb-0">Filtros <i class="bi bi-funnel"></i>:</h6>
-    <section class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Tipo de producto
-        </a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Clientes</a></li>
-            <li><a class="dropdown-item" href="#">Proveedores</a></li>
-            <li><a class="dropdown-item" href="#">Manuales</a></li>
-        </ul>
-    </section>
+<div class="container-fluid filtros py-2 px-3 bg-light rounded border mb-2">
+    <div class="d-flex align-items-center gap-3">
+        <h6 class="mb-0 fw-bold text-secondary">
+            <i class="bi bi-funnel-fill text-primary"></i> Filtros:
+        </h6>
+
+        <button class="btn btn-warning btn-sm">
+            - Stock
+        </button>
+
+        <form method="GET" action="" class="mb-0">
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-primary dropdown-toggle fw-semibold" type="button"
+                    data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    Seleccionar Filtros
+                </button>
+
+                <div class="dropdown-menu p-3 shadow-lg">
+
+                    <div class="mb-3">
+                        <label for="filterColor" class="form-label small fw-bold text-muted mb-1">Tipo Producto</label>
+                        <select class="form-select form-select-sm" id="filterColor">
+                            <option selected disabled>Seleccionar Tipo ...</option>
+                            <option value="negro">Desinfectante</option>
+                            <option value="mron">Tinte</option>
+                            <option value="suela">Descolorante</option>
+                            <option value="rojo">Acído</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="filterTipo" class="form-label small fw-bold text-muted mb-1">Sede</label>
+                        <select class="form-select form-select-sm" id="filterTipo">
+                            <option selected disabled>Seleccionar Sede...</option>
+                            <option value="vacuno">Sede 1 </option>
+                            <option value="caprino">Sede 2</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones de Acción (Visuales) -->
+                    <div class="d-flex justify-content-between pt-1">
+                        <button type="button" class="btn btn-sm btn-light text-secondary border">Limpiar</button>
+                        <button type="button" class="btn btn-sm btn-primary px-3">Aplicar</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+
 
 <form class="d-flex" role="search">
     <input class="form-control me-2" type="search" placeholder="Nombre de Producto" aria-label="Search" />
     <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
 </form>
 
-<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 p-2">
+<div class="d-flex justify-content-between row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2 p-2">
 
     {% for data in data_all %}
     <div class="col">
@@ -36,7 +74,7 @@
             {% endif %}
 
             <div class="card-body d-flex flex-column">
-                
+
                 <dl class="mb-3">
                     <dt>Nombre Producto:</dt>
                     <dd>{{ data.producto.nombre }}</dd>
@@ -49,15 +87,10 @@
                 </dl>
 
                 <div class="d-flex justify-content-end mt-auto">
-                    
-                    <input type="number" 
-                           id="inputRetirar_{{ data.id }}" 
-                           name="cantidad" 
-                           min="1" 
-                           max="{{ data.stock_sede }}" 
-                           class="form-control d-inline-block w-100 mx-1"
-                           placeholder="cant.">
-                           
+
+                    <input type="number" id="inputRetirar_{{ data.id }}" name="cantidad" min="1"
+                        max="{{ data.stock_sede }}" class="form-control d-inline-block w-100 mx-1" placeholder="cant.">
+
                     <button type="button" id="btn-retirar-{{ data.id }}" class="btn btn-danger">
                         Retirar
                     </button>
@@ -66,7 +99,7 @@
             </div>
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
 
 </div>
 

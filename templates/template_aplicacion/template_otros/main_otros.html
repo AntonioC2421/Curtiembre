@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEMPLATE MAIN_OTROS.HTML</h1>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static %}
+
+{% block main %}
+<link rel="stylesheet" href="{% static 'style/Otros/otros.css' %}">
+<div class="container OptionOtros d-flex justify-content-evenly p-1">
+    <section class="Option">
+        <a href="{% url 'MainOtros' %}">Clientes</a>
+    </section>
+    <section class="Option">
+        <a href="{% url 'OtrosProveedores' %}">Proveedores</a>
+    </section>
+    <section class="Option">
+        <a href="{% url 'OtrosManuales' %}">Manuales</a>
+    </section>
+</div>
+
+<div class="ContainerOtros">
+    {% block content %}
+
+    {% endblock %}
+</div>
+{% endblock %}

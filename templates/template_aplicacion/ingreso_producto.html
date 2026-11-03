@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block content %}
+{% block main %}
 <link rel="stylesheet" href="{% static 'style/Producto/IngresoProducto.css' %}">
 
 <div class="IngresoProducto">
@@ -71,7 +71,7 @@
                         <datalist id="datalistOptionsProveedor">
                             {% for prov in data.proveedores %}
                             <option value="{{ prov.nombre }}">
-                            {% endfor %}
+                                {% endfor %}
                         </datalist>
                     </div>
 
@@ -92,9 +92,15 @@
         </form>
     </div>
 
-    <h5 class="mb-0 px-2">Lista de productos</h5>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2 border-top border-bottom">
+        <h5 class="mb-0 px-2">Lista de productos</h5>
+        <button class="btn btn-secondary">
+            <a href="{% url 'Producto' %}" class="text-decoration-none text-white">Ver todos los productos</a>
+        </button>
+    </div>
+    
     <div class="container py-3">
-
+        <p class="form-text text-center p-0 m-0">Ultimos 10 ingresos ...</p>
         <div class="tableproduct">
             <table class="table table-hover table-bordered">
                 <thead>

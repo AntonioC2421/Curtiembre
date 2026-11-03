@@ -35,23 +35,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">Ventas</a>
+                        <a class="nav-link" href="{% url 'ResgistroVenta' %}">Registro de Ventas</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Producto'%}">Productos</a>
+                        <a class="nav-link" href="{% url 'Consumo' %}">Consumo</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Cuero' %}">Cueros</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">Cueros</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Consumo</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Otros</a>
+                        <a class="nav-link" href="{% url 'MainOtros' %}">Otros</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
@@ -65,7 +61,7 @@
 
     <!-- Contenedor principal ajustado sin desbordamientos -->
     <main class="container-fluid px-2 py-2 overflow-hidden">
-        {% block content %}
+        {% block main %}
         {% endblock %}
     </main>
 
@@ -79,7 +75,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-
+    
 </body>
 
 </html>

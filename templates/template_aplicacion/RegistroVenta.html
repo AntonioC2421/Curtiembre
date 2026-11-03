@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block main %}
+<link rel="stylesheet" href="{% static 'style/Venta/venta.css' %}">
+<div class="container">
+    <div class="container-fluid filtros py-2 px-3 bg-light rounded border mb-2">
+        <div class="d-flex align-items-center gap-3">
+            <h6 class="mb-0 fw-bold text-secondary">
+                <i class="bi bi-funnel-fill text-primary"></i> Filtros:
+            </h6>
+            <!-- MODIFICAR FILTROS PARA VENTAS Fechas, color, clientes, tipo de cuero -->
+            <form method="GET" action="" class="mb-0">
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-primary dropdown-toggle fw-semibold" type="button"
+                        data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        Seleccionar Filtros
+                    </button>
+
+                    <div class="dropdown-menu p-3 shadow-lg">
+
+                        <div class="mb-3">
+                            <label for="filterTipoCueroVenta" class="form-label small fw-bold text-muted mb-1">Tipo
+                                Cuero</label>
+                            <select class="form-select form-select-sm" id="filterTipoCueroVenta">
+                                <option selected disabled>Seleccionar Tipo ...</option>
+                                <option value="negro">Desinfectante</option>
+                                <option value="mron">Tinte</option>
+                                <option value="suela">Descolorante</option>
+                                <option value="rojo">Acído</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="filterSede" class="form-label small fw-bold text-muted mb-1">Sede</label>
+                            <select class="form-select form-select-sm" id="filterSede">
+                                <option selected disabled>Seleccionar Sede...</option>
+                                <option value="vacuno">Sede 1 </option>
+                                <option value="caprino">Sede 2</option>
+                            </select>
+                        </div>
+
+
+
+                        <!-- Botones de Acción (Visuales) -->
+                        <div class="d-flex justify-content-between pt-1">
+                            <button type="button" class="btn btn-sm btn-light text-secondary border">Limpiar</button>
+                            <button type="button" class="btn btn-sm btn-primary px-3">Aplicar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <form class="d-flex mb-1" role="search">
+        <input class="form-control me-2" type="search" placeholder="Código de Color o Nombre de Cliente"
+            aria-label="Search" />
+        <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    
+    <div class="TableRegistroVenta">
+        <h1 class="mb-0">Registro de Ventas</h1>
+        <p class="text-muted small m-0 p-0">Últimos 20 registros ...</p>
+        <div class="table-registro-venta">
+            <table class="table table-striped-columns table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Venta</th> <!-- AL HACER CLICK, ME LLEVA AL DETALLE DE LA VENTA-->
+                        <th scope="col">Cuero</th>
+                        <th scope="col"># Color</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cliente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Cuero vegano</td>
+                        <td>#255.255.252</td>
+                        <td>24/09/2014</td>
+                        <td>Juan Fideo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,11 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEMPLATE MAIN_CUERO.HTML</h1>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static 'style/filtros.css' %}">
+
+<link rel="stylesheet" href="{% static 'style/Cuero/cuero.css' %}">
+
+<div class="container-fluid ContainerCuero">
+    <div class="row ">
+        <div class="col-lg-3 col-md-4 py-2 px-3">
+            <form>
+                <div class="mb-2">
+                    <h5>Registro de Cueros</h5>
+                    <label class="form-label">Sede:</label>
+                    <div class="d-flex flex-wrap gap-3">
+                        {% for radio in data.sede %}
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="sede" value="{{ radio.data.value }}"
+                                id="{{ radio.id_for_label }}" {% if radio.data.selected %}checked{% endif %} required>
+                            <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                {{ radio }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label for="id_tipo_cuero_nombre" class="form-label">Tipo de Cuero:</label>
+                    <input class="form-control" list="datalistOptionsTiposCuero" id="id_tipo_cuero_nombre"
+                        name="tipo_cuero_nombre" placeholder="ejm: Vegetal" required>
+                    <datalist id="datalistOptionsTiposCuero">
+                        {% for tipo in data.tipos_cuero %}
+                        <option value="{{ tipo.nombre }}">
+                            {% endfor %}
+                    </datalist>
+                </div>
+
+                <div class="mb-2">
+                    <label for="exampleInputEspesor" class="form-label">Espesor</label>
+                    <input type="number" class="form-control" id="exampleInputEspesor" aria-describedby="espesorHelp">
+                    <div id="espesorHelp" class="form-text">Medida de espesor (mm).</div>
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputArea" class="form-label">Área</label>
+                    <input type="number" class="form-control" id="exampleInputArea" aria-describedby="areaHelp">
+                    <div id="areaHelp" class="form-text">Medida de área en ft².</div>
+                </div>
+
+                <div class="mb-2">
+                    <label for="inputEstado" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="inputEstado" name="estado" value="DISPONIBLE" readonly>
+                    <div id="estadoHelp" class="form-text"><b>Estado inicial asignado automáticamente.</b></div>
+                </div>
+
+                <div class="mb-2">
+                    <label for="color_cuero" class="form-label">Color:</label>
+                    <input type="text" class="form-control" id="id_color_cuero" name="color_cuero"
+                        placeholder="ejemplo: 'Azul' " required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="inputColorCode" class="form-label fw-bold">Código de Color</label>
+                    <div class="input-group">
+                        <!-- Campo para escribir -->
+                        <input type="text" class="form-control" id="inputColorCode" name="codigo_color"
+                            placeholder="Ej: FF5733" oninput="actualizarColor(this.value)">
+
+                        <!-- Muestra del color con tamaño fijo (45px x 38px) -->
+                        <div class="input-group-text p-0 overflow-hidden" style="width: 45px; height: 38px;">
+                            <div id="colorPreview"
+                                style="width: 100%; height: 100%; background-color: #ffffff; border: 1px solid #ced4da;">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="colorHelp" class="form-text">Escribe un HEX como FF5733 o RGB como 255.0.0</div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success" type="submit">Registar</button>
+                </div>
+            </form>
+        </div>
+        <div class="ContainerCardCuero col-lg-9 col-md-8 p-2">
+            <h5>Lista de Cueros</h5>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="{% static 'js/Cuero/cuero.js' %}"></script>
+
+{% endblock %}

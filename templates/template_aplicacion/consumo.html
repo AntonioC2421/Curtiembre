@@ -1,11 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEMPLATE CONSUMOS.HTML</h1>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static %}
+{% block main %}
+<link rel="stylesheet" href="{% static 'style/Consumo/consumo.css' %}">
+<div class="container">
+    <div class="container-fluid filtros py-2 px-3 bg-light rounded border mb-2">
+        <div class="d-flex align-items-center gap-3">
+            <h6 class="mb-0 fw-bold text-secondary">
+                <i class="bi bi-funnel-fill text-primary"></i> Filtro:
+            </h6>
+            <!-- MODIFICAR FILTROS PARA VENTAS Fechas, color, clientes, tipo de cuero -->
+            <form method="GET" action="" class="mb-0">
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-primary dropdown-toggle fw-semibold" type="button"
+                        data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        Seleccionar Filtros
+                    </button>
+
+                    <div class="dropdown-menu p-3 shadow-lg">
+
+                        <div class="mb-3">
+                            <label for="filterSedeConsumo" class="form-label small fw-bold text-muted mb-1">Sede</label>
+                            <select class="form-select form-select-sm" id="filterSedeConsumo">
+                                <option selected disabled>Seleccionar Sede...</option>
+                                <option value="vacuno">Sede 1 </option>
+                                <option value="caprino">Sede 2</option>
+                            </select>
+                        </div>
+
+                        <!-- Botones de Acción (Visuales) -->
+                        <div class="d-flex justify-content-between pt-1">
+                            <button type="button" class="btn btn-sm btn-light text-secondary border">Limpiar</button>
+                            <button type="button" class="btn btn-sm btn-primary px-3">Aplicar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <form class="d-flex mb-1" role="search">
+        <input class="form-control me-2" type="search" placeholder="Nombre Producto"
+            aria-label="Search" />
+        <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    
+    <div class="TableRegistroConsumo">
+        <h1 class="mb-0">Registro de Consumo</h1>
+        <p class="text-muted small m-0 p-0">Últimos 20 registros ...</p>
+        <div class="table-registro-consumo">
+            <table class="table table-striped-columns table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Sede</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Retiro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Cloruro de Benzalconio 50%</td>
+                        <td>Calbuco</td>
+                        <td>24/09/2014</td>
+                        <td>20 unid</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -3,3 +3,7 @@
     width: 100%;
     object-fit: contain;
 }
+
+.card-producto {
+    max-width: 21rem;
+}

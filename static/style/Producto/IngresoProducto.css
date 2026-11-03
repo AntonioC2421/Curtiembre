@@ -16,15 +16,15 @@
     display: grid;
     place-items: center;
     padding: 1rem 0.5rem;
-    border: var(--StyleBorde);
-    background-color: #146c43;
+    border: 2px solid rgb(4, 4, 129);
+    background-color:  rgba(214, 214, 214, 0.897);
     text-decoration: none;
-    color: black;
+    color: rgb(4, 4, 129);
     font-family: monospace;
 }
 
 .btn-addproduct:hover {
-    background-color: rgb(43, 134, 134);
+    background-color: rgb(4, 4, 129);
     color: #ffffff;
 }
 

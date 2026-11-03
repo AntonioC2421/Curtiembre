@@ -1,0 +1,27 @@
+.OptionOtros{
+    border: 2px solid black;
+    background-color:rgba(230, 230, 230, 0.834) ;
+}
+
+.Option a {
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    font-family: monospace;
+}
+
+.TableOtro{
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 75vh;
+    padding: 0;
+}
+
+.TableOtro table thead th {
+    position: sticky;
+    white-space: nowrap;
+    top: 0;
+    background-color: #cecece;
+    z-index: 10;
+    border-top: none;
+}

@@ -1,0 +1,28 @@
+.TableRegistroVenta{
+
+    background-color: #f8f9fa;
+}
+
+.TableRegistroVenta h1{
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: monospace;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-registro-venta {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 700px;
+    padding: 0;
+}
+
+.table-registro-venta table thead th {
+    position: sticky;
+    white-space: nowrap;
+    top: 0;
+    background-color: #cecece;
+    z-index: 10;
+    border-top: none;
+}

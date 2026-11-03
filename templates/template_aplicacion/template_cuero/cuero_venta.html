@@ -1,11 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEMPLATE CUERO_VENTA.HTML</h1>
-</body>
-</html>
+{% extends 'template_aplicacion/template_cuero/main_cuero.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/Cuero/cuero.css' %}">
+
+<div class=" d-flex align-items-center gap-3 p-2">
+    <h6 class="mb-0 fw-bold text-secondary">
+        <i class="bi bi-funnel-fill text-primary"></i> Filtros:
+    </h6>
+    <form method="GET" action="" class="mb-0">
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-primary dropdown-toggle fw-semibold" type="button"
+                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                Seleccionar Filtros
+            </button>
+
+            <div class="dropdown-menu p-3 shadow-lg">
+
+                <div class="mb-3">
+                    <label for="filterColor" class="form-label small fw-bold text-muted mb-1">Color</label>
+                    <select class="form-select form-select-sm" id="filterColor">
+                        <option selected disabled>Seleccionar color...</option>
+                        <option value="negro">Negro</option>
+                        <option value="mron">Marrón</option>
+                        <option value="suela">Suela</option>
+                        <option value="rojo">Rojo</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="filterTipo" class="form-label small fw-bold text-muted mb-1">Tipo de
+                        Cuero</label>
+                    <select class="form-select form-select-sm" id="filterTipo">
+                        <option selected disabled>Seleccionar tipo...</option>
+                        <option value="vacuno">Vacuno</option>
+                        <option value="caprino">Caprino</option>
+                        <option value="porcino">Porcino</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="filterArea" class="form-label small fw-bold text-muted mb-1">Área
+                        ($m^2$)</label>
+                    <input type="number" step="0.1" class="form-control form-control-sm" id="filterArea"
+                        placeholder="Ej: 1.5">
+                </div>
+
+                <div class="mb-3">
+                    <label for="filterEspesor" class="form-label small fw-bold text-muted mb-1">Espesor
+                        (mm)</label>
+                    <input type="number" step="0.1" class="form-control form-control-sm" id="filterEspesor"
+                        placeholder="Ej: 1.2">
+                </div>
+
+                <hr class="dropdown-divider">
+
+                <!-- Botones de Acción -->
+                <div class="d-flex justify-content-between pt-1">
+                    <button type="button" class="btn btn-sm btn-light text-secondary border">Limpiar</button>
+                    <button type="button" class="btn btn-sm btn-primary px-3">Aplicar</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+<div class="p-3">
+    <div class="row g-3">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tipo de cuero</h5>
+
+                    <dl class="card-text">
+                        <dt>Espesor :</dt>
+                        <dd> 24 mm </dd>
+
+                        <dt>Area:</dt>
+                        <dd> 1.5 m² </dd>
+
+                        <dt>Código color:</dt>
+                        <dd>
+                            #ffffff
+                            <!-- Muestra de color automaticamente con el dato que venga-->
+                            <div class="MuestraColor">
+                                <i class="bi bi-paint-bucket"></i>
+                            </div>
+                        </dd>
+
+                        <dt>Nombre Color:</dt>
+                        <dd> Blanco </dd>
+
+                        <dt>Sede:</dt>
+                        <dd> Calbuco </dd>
+
+                        <dt>Estado:</dt>
+                        <dd> Disponible </dd>
+                    </dl>
+
+                    <a href="#" class="btn btn-primary">Vender</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
